@@ -7,8 +7,8 @@ RUN mkdir /src && cd /src && \
 	/usr/lib/qt5/bin/qmake && make
 
 FROM alpine:latest
-# install dependencies
-RUN apk add --no-cache protobuf qt5-qtbase
+# install dependencies (protobuf-dev contains basic .proto files and generated sources)
+RUN apk add --no-cache protobuf protobuf-dev qt5-qtbase
 # add binary
 COPY --from=builder /src/protoc-gen-doc/protoc-gen-doc /usr/bin
 
